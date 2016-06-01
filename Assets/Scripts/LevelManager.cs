@@ -4,12 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
-    public float autoLoadNextLevelAfter = 5;
+    private float autoLoadNextLevelAfter = 5;
 
     void Start()
     {
-        Invoke("LoadNextLevel", autoLoadNextLevelAfter);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            Invoke("LoadNextLevel", autoLoadNextLevelAfter);
     }
+
     public void loadLevel(string name){
         //Application.LoadLevel(name);
         SceneManager.LoadScene(name);
